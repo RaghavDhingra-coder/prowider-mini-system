@@ -32,11 +32,11 @@ export default function HomePage() {
                 Lead routing workspace
               </div>
               <h1 className="mt-6 max-w-3xl text-4xl font-bold tracking-tight text-slate-950 sm:text-5xl">
-                Prowider Mini Lead Distribution System
+                Provider Mini Lead Distribution System
               </h1>
               <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-600">
-                A clean workspace for receiving service requests, monitoring provider
-                allocation, and testing the routing flow without changing backend logic.
+                Intelligent lead routing with fair provider allocation, real-time
+                monitoring, and concurrency-safe distribution.
               </p>
 
               <div className="mt-8 flex flex-wrap gap-3">
@@ -62,8 +62,8 @@ export default function HomePage() {
                   Request {"->"} Allocate {"->"} Monitor
                 </p>
                 <p className="mt-2 text-sm leading-6 text-slate-600">
-                  The app keeps request submission, provider assignment, and testing
-                  tools close together so day-to-day usage stays simple.
+                  A streamlined workflow for submitting requests, routing leads fairly,
+                  and monitoring allocation activity in real time.
                 </p>
               </div>
 

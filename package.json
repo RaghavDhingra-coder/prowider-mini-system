@@ -8,6 +8,7 @@
     "start": "NODE_ENV=production node --import tsx server.ts",
     "lint": "next lint",
     "seed": "tsx scripts/seed.ts",
+    "clean-db": "tsx scripts/clean-db.ts",
     "reset-db": "tsx scripts/reset-db.ts"
   },
   "dependencies": {

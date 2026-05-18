@@ -253,23 +253,25 @@ export default function TestToolsPage() {
       results.forEach((result, index) => {
         if (result.status === "fulfilled") {
           successCount++;
-          const retryCount = result.value.data.retryCount || 0;
-          const waitTime = result.value.data.totalWaitTime || 0;
+          const value = result.value as any;
+          const data = value.data;
+          const retryCount = data.retryCount || 0;
+          const waitTime = data.totalWaitTime || 0;
           
           totalRetries += retryCount;
           totalWaitTime += waitTime;
           maxRetries = Math.max(maxRetries, retryCount);
           maxWaitTime = Math.max(maxWaitTime, waitTime);
           
-          const retryInfo = result.value.data.retried 
+          const retryInfo = data.retried 
             ? ` (${retryCount} ${retryCount === 1 ? 'retry' : 'retries'}, waited ${waitTime}ms)`
             : '';
           
           addLog(
             "success",
             `Lead Request ${index + 1}${retryInfo}`,
-            result.value.data.message || "Lead created successfully",
-            result.value.data
+            data.message || "Lead created successfully",
+            data
           );
         } else {
           failureCount++;
@@ -282,7 +284,7 @@ export default function TestToolsPage() {
       });
 
       // Enhanced summary log with detailed metrics
-      const avgRetries = successCount > 0 ? (totalRetries / successCount).toFixed(2) : 0;
+      const avgRetries = successCount > 0 ? (totalRetries / successCount).toFixed(2) : "0";
       const avgWaitTime = successCount > 0 ? Math.round(totalWaitTime / successCount) : 0;
       
       const summaryMessage = [

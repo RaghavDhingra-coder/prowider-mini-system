@@ -1,16 +1,31 @@
 import { createServer } from "http";
+import { dirname, join } from "path";
+import { existsSync } from "fs";
+import { fileURLToPath } from "url";
 import { loadEnvConfig } from "@next/env";
 import next from "next";
 import { Server } from "socket.io";
 import { setSocketServer } from "./lib/socket-server";
 
-loadEnvConfig(process.cwd());
+const appDir = dirname(fileURLToPath(import.meta.url));
+
+loadEnvConfig(appDir);
 
 const dev = process.env.NODE_ENV !== "production";
 const host = "0.0.0.0";
 const port = Number(process.env.PORT || 3000);
 
-const app = next({ dev, hostname: host, port });
+if (!dev) {
+  const buildIdPath = join(appDir, ".next", "BUILD_ID");
+
+  if (!existsSync(buildIdPath)) {
+    throw new Error(
+      "Missing Next.js production build. Run `npm run build` before `npm start`.",
+    );
+  }
+}
+
+const app = next({ dev, dir: appDir, hostname: host, port });
 const handle = app.getRequestHandler();
 
 app.prepare().then(() => {

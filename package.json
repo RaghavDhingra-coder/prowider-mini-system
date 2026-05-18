@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "tsx server.ts",
-    "build": "next build",
+    "build": "npx next build",
     "start": "NODE_ENV=production tsx server.ts",
     "lint": "next lint",
     "seed": "tsx scripts/seed.ts",
